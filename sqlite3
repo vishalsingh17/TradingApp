@@ -1,0 +1,52 @@
+1. download sqlite exe file from https://www.sqlite.org/download.html according to your system.
+2. run command 'sqlite3' to check if sqlite3 is active
+3. run command '.quit' to shut down the db
+4. create a stock table using the following command
+        CREATE TABLE IF NOT EXISTS stock (
+        id INTEGER PRIMARY KEY,
+        symbol TEXT NOT NULL UNIQUE,
+        company TEXT NOT NULL
+        );
+5. check the schema using '.schema' command
+6. create a stock price table using the following command
+        CREATE TABLE IF NOT EXISTS stock_price (
+        id INTEGER PRIMARY KEY,
+        stock_id INTEGER,
+        date NOT NULL,
+        open NOT NULL,
+        high NOT NULL,
+        low NOT NULL,
+        close NOT NULL,
+        adjusted_close NOT NULL,
+        volume NOT NULL,
+        FOREIGN KEY (stock_id) REFERENCES stock (id)
+        );
+
+
+---------------------------------------------------------------Important SQL Commands---------------------------------------------------------------
+Insert statement
+--> INSERT INTO stock (symbol, company) VALUES ('AAPL', 'Apple');
+--> INSERT INTO stock (symbol, company) VALUES ('MSFT', 'Microsoft');
+--> INSERT INTO stock (symbol, company) VALUES ('TSLA', 'Tesla');
+--> INSERT INTO stock (symbol, company) VALUES ('AMD', 'Advanced Micro Devices');
+
+Select statement
+--> SELECT * FROM stocs;
+--> SELECT id, symbol FROM stock;
+--> SELECT company FROM stock WHERE symbol = 'TSLA';
+--> SELECT company FROM stock WHERE symbol like 'A%';
+--> SELECT company FROM stock WHERE company like '%icro%';
+--> SELECT * FROM stock limit 3;
+--> SELECT * FROM stock order by symbol desc;
+--> SELECT count(*) FROM stock;
+--> SELECT count(*) FROM stock WHERE company like '%icro'
+
+
+Update statement
+UPDATE stocks SET company = 'Apple Inc.' WHERE id=1;
+UPDATE stocks SET company = 'Advanced Micro';
+
+Delete statement
+DELETE from stocks WHERE id = 3;
+DELETE * from stocks
+
